@@ -34,5 +34,9 @@ module.exports = function(environment) {
 
   }
 
+  if (environment === 'gh-pages') {
+    ENV.baseURL = '/fire-ref';
+  }
+
   return ENV;
 };
