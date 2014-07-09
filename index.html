@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>FireRef</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <base href="/fire-ref/" />
+
+    <link rel="stylesheet" href="assets/vendor-d41d8cd98f00b204e9800998ecf8427e.css">
+    <link rel="stylesheet" href="assets/fire-ref-b422b6272c8445081a018028b4842fea.css">
+  </head>
+  <body>
+    <script>
+      window.FireRefENV = {"environment":"production","baseURL":"/fire-ref","locationType":"auto","EmberENV":{"FEATURES":{}},"APP":{}};
+      window.EmberENV = window.FireRefENV.EmberENV;
+    </script>
+    <script src="assets/vendor-ef0048a323a46ba06334d7f74cb2373c.js"></script>
+    <script src="assets/fire-ref-4710176fa02f29637dd2ba074bc870c0.js"></script>
+    <script>
+      window.FireRef = require('fire-ref/app')['default'].create(FireRefENV.APP);
+    </script>
+  </body>
+</html>
