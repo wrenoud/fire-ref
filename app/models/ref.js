@@ -24,4 +24,4 @@ ref.reopenClass({
   ]
 });
 
-export default ref
+export default ref;
