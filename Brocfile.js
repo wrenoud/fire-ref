@@ -18,7 +18,7 @@ var app = new EmberApp();
 // along with the exports of each module as its value.
 
 app.import('vendor/bootstrap-sass-official/assets/javascripts/bootstrap/collapse.js');
-app.import('vendor/dropbox/lib/dropbox.js');
+app.import('vendor/dropbox-build/dropbox.js');
 
 // Based on http://www.octolabs.com/blogs/octoblog/2014/05/25/bootstrap-glyphicons-with-ember-cli/
 // Put the bootstrap fonts in the place that the bootstrap css expects to find them.
