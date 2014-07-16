@@ -11,8 +11,5 @@ var App = Ember.Application.extend({
 
 loadInitializers(App, 'fire-ref');
 
-Ember.client = new Dropbox.Client({ key: "dfzpvdfyqakmnfi" });
-Ember.client.authDriver(new Dropbox.AuthDriver.Popup({
-    receiverUrl: "http://localhost:4200/oauth_receiver.html"}));
 
 export default App;

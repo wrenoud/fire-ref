@@ -18,13 +18,16 @@
       		{{#link-to 'refs'}}References{{/link-to}}
       	</li>
         <li><a href="#">Link</a></li>
-        <li><a href="#">Link</a></li>
+        <li>{{#link-to 'user'}}User{{/link-to}}</li>
+        <li><button {{action 'dropbox_login' 'loggedin'}}>Dropbox Login</button></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
 
-<div>
 
+{{#unless loggedin}}
+<button id="signin-button">Dropbox Login</button>
+{{/unless}}
 
 {{outlet}}
