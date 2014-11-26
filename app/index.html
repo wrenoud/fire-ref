@@ -7,20 +7,15 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    {{BASE_TAG}}
+    {{content-for 'head'}}
 
     <link rel="stylesheet" href="assets/vendor.css">
     <link rel="stylesheet" href="assets/fire-ref.css">
   </head>
   <body>
-    <script>
-      window.FireRefENV = {{ENV}};
-      window.EmberENV = window.FireRefENV.EmberENV;
-    </script>
+    {{content-for 'body'}}
+
     <script src="assets/vendor.js"></script>
     <script src="assets/fire-ref.js"></script>
-    <script>
-      window.FireRef = require('fire-ref/app')['default'].create(FireRefENV.APP);
-    </script>
   </body>
 </html>
