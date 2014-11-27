@@ -18,6 +18,7 @@ var app = new EmberApp();
 // along with the exports of each module as its value.
 
 app.import('bower_components/dropbox-build/dropbox.js');
+app.import('bower_components/zotero-bibtex-parse/zotero-bibtex-parse.js');
 app.import('bower_components/ember-localstorage-adapter/localstorage_adapter.js');
 
 // Merge the bootstrapFonts with the ember app tree

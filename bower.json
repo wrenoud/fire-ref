@@ -14,6 +14,7 @@
     "ember-qunit": "0.1.8",
     "ember-qunit-notifications": "0.0.4",
     "qunit": "~1.15.0",
+    "zotero-bibtex-parse": "git://github.com/apcshields/zotero-bibtex-parse.git#~0.0.14",
     "ember-localstorage-adapter": "~0.5.0"
   }
 }
