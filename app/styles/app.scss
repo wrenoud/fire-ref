@@ -3,3 +3,11 @@
 html, body {
   margin: 20px;
 }
+
+#fork_me {
+	position: absolute;
+	top: 0;
+	right: 0;
+	border: 0;
+	z-index: 100;
+}

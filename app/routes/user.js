@@ -2,10 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 	model: function(){
-		var client = Ember.Application.client;
-		client.getAccountInfo(function(error, account,data){
-          console.log(data);
-          return data;
-        });
+		if(!this.container.lookup('controller:application').get('loggedin'))
+			this.transitionTo('/');
+		return this.store.find('user', this.container.lookup('controller:application').get('currentUser'));
 	}
 });

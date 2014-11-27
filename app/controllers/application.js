@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+	currentUser: null,
 	loggedin: false,
 
 	actions: {
@@ -20,9 +21,14 @@ export default Ember.Controller.extend({
 			  // The user authorized your app, and everything went well.
 			  // client is a Dropbox.Client instance that you can use to make API calls.
 			  controller.set('loggedin', true);
-			  client.getAccountInfo({},function(error, account){
-			  	console.log(account);
-			  })
+			  client.getAccountInfo({},function(err, account){
+			  	if(!err)
+			  	{
+			  		account.id = account.uid;
+			  		controller.set('currentUser', account.id);
+					controller.get('store').createRecord('user', account);
+		  		}
+			  });
 			});
 		}
 	}
