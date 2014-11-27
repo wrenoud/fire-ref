@@ -1,9 +1,11 @@
+/* global Dropbox, Ember */
+
 export default {
   name: 'dropbox',
   after: 'store',
 
-  initialize: function(container, app) {
-    var controller = container.lookup('controller:application');
+  initialize: function(/* container, app */) {
+    //var controller = container.lookup('controller:application');
 
     var client = Ember.Application.client = new Dropbox.Client({ key: "dfzpvdfyqakmnfi" });
     client.authDriver(new Dropbox.AuthDriver.Popup({
