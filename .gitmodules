@@ -1,0 +1,4 @@
+[submodule "dist"]
+	path = dist
+	url = git@github.com:wrenoud/fire-ref.git
+	branch = gh-pages
