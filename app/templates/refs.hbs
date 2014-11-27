@@ -11,8 +11,12 @@
 		<tr>
 			<td>{{author}}</td>
 			<td>{{year}}</td>
-			<td>{{title}}</td>
+			<td>{{#linkTo 'ref' this}}
+				{{title}}
+			{{/linkTo}}</td>
 		</tr>
 	{{/each}}
 	</tbody>
 </table>
+
+{{outlet}}
