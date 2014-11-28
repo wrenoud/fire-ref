@@ -1,3 +1,4 @@
+/* global Ember, bibtexParse */
 import DS from 'ember-data';
 import config from '../config/environment';
 
@@ -6,28 +7,24 @@ var ref = DS.Model.extend({
   title: DS.attr(),
   year: DS.attr(),
   author: DS.attr(),
-  uri: DS.attr(),
+  publisher: DS.attr(),
+  bibtex: function(){
+    return bibtexParse.toBibtex([{
+      citationKey: this.id,
+      entryType: this.getWithDefault('type', 'paper'),
+      entryTags: this.toJSON()
+    }]);
+  }.property('type','title','year','author','publisher','path','reviewed','updated'),
+  path: DS.attr(),
+  reviewed: DS.attr(), // True/False
+  updated: DS.attr(),
 
   preview: function(){
-    return "https://api-content.dropbox.com/1/previews/auto" + config.APP.DROPBOX_FOLDER + this.get('uri');
-  }.property('uri')
+    return "preview.html?path=" + this.get('path') + "&access_token=" + Ember.Application.client._oauth._token;
+  }.property('uri'),
+
 });
 
-ref.reopenClass({
-  FIXTURES: [
-    {
-      id: 1,
-      title:"Something important",
-      year: "2010",
-      author:"Weston Renoud",
-    },
-    {
-      id: 2,
-      title:"Less important",
-      year: "2009",
-      author:"W Renoud",
-    }
-  ]
-});
+
 
 export default ref;

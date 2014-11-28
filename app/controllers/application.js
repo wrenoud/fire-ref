@@ -41,19 +41,65 @@ export default Ember.Controller.extend(Ember.TargetActionSupport,{
 
       if(this.get('loggedin'))
       {
-        client.readdir("/", function(error, entries, other, stuff) {
+        client.readdir("/", function(error, entries, folderStat, fileStats) {
           if (error) {
             return showError(error);  // Something went wrong.
           }
-          console.log(other);
-          console.log(stuff);
+          console.log(folderStat);
+          console.log(fileStats);
           console.log("Your Dropbox contains " + entries.join(", "));
-          entries.forEach(function(entry){
-            controller.get('store').createRecord('ref', {
-              id: entry.replace(/\W/g, ''),
-              title: entry,
-              uri: entry
-            });
+          
+          var items = {};
+          // group bibtex with files
+          fileStats.forEach(function(file){
+            if(file.isFile){
+              var id = file.name.replace(/\.[^\.]+$/ig,'').replace(/ /g,"_").replace(/[^0-9a-z_]/ig,'');
+              if(file.mimeType === "text/x-bibtex"){
+                if(id in items){
+                  items[id].bib = file;
+                }else{
+                  items[id] = {bib: file, file: null};
+                }
+              }else{
+                if(id in items){
+                  items[id].file = file;
+                }else{
+                  items[id] = {bib: null, file: file};
+                }
+              }
+            }
+          });
+
+          Object.keys(items).forEach(function(id){
+            var store = controller.get('store');
+            var prev_item = store.getById('ref', id);
+            if(prev_item){
+
+            }else{
+              if(items[id].bib){
+                // have bibtex, need to read it and add to the store...
+                client.readFile(items[id].bib.path, function(error, data) {
+                  if (error) {
+                    return showError(error);  // Something went wrong.
+                  }
+
+                  var bibtex = bibtexParse.toJSON(data);
+                  var new_item = bibtex[0].entryTags;
+                  new_item.type = bibtex.entryType;
+                  new_item.id = bibtex.citationKey;
+                  var item = store.createRecord('ref', new_item);
+                  item.save();
+                });
+              }else{
+                var item = store.createRecord('ref', {
+                  id: id,
+                  title: items[id].file.name,
+                  path: items[id].file.path,
+                  reviewed: 'false'
+                });
+                item.save();
+              }
+            }
           });
         });
       }else{

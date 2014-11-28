@@ -6,20 +6,24 @@ html, body {
 
 #fork_me {
 	position: absolute;
-	top: 0;
-	right: 0;
+	top: -15px;
+	right: -15px;
 	border: 0;
 	z-index: 2000;
+	clip: rect(15px,134px,125px,21px);
 }
 .dragger, .subpanel, #content_panel{
 	position: absolute;
 	overflow: hidden;
 	margin: 0px;
 	padding: 0px;
+	box-sizing: border-box;
 }
 .dragger{
-	width: 10px;
-	cursor: ew-resize;
+	width: 8px;
+	cursor: col-resize;
+	border: 0 1px 0 0;
+	background: #CCC;
 }
 .scrollable{
 	overflow-y: scroll;

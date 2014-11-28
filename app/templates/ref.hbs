@@ -1,11 +1,30 @@
 <div id="reference_subpanel" class="subpanel scrollable left">
-	<div class="form-group">
-	    <label for="exampleInputEmail1">Title</label>
-	    {{input type="text" class="form-control" value=title}}
-	</div>
-	<div class="form-group">
-	    <label for="exampleInputEmail1">Url</label>
-	    {{input type="text" class="form-control" value=url}}
+	{{#if isDirty}}
+	<a {{action 'save'}}>Dropbox Login</a></li>
+	{{/if}}
+	<div class="container-fluid">
+		<div class="row">
+			<div class="form-group">
+			    <label for="exampleInputEmail1">Title</label>
+			    {{input type="text" class="form-control" value=title}}
+			</div>
+			<div class="form-group">
+			    <label for="exampleInputEmail1">Authors</label>
+			    {{input type="text" class="form-control" value=author}}
+			</div>
+			<div class="form-group">
+			    <label for="exampleInputEmail1">Year</label>
+			    {{input type="text" class="form-control" value=year}}
+			</div>
+			<div class="form-group">
+			    <label for="exampleInputEmail1">Publisher</label>
+			    {{input type="text" class="form-control" value=publisher}}
+			</div>
+			<div class="form-group">
+			    <label for="exampleInputEmail1">Url</label>
+			    {{input type="text" class="form-control" value=url}}
+			</div>
+		</div>
 	</div>
 </div>
 
@@ -13,5 +32,5 @@
 </div>
 
 <div id="preview_panel" class="subpanel scrollable right">
-	<iframe id="preview" {{bind-attr src='preview'}}></iframe>
+	{{!--<iframe id="preview" {{bind-attr src='preview'}}></iframe>--}}
 </div>
