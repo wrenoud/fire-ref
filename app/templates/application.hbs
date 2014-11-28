@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -14,20 +14,24 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li>
-      		{{#link-to 'refs'}}References{{/link-to}}
-      	</li>
-        <li><a href="#">Link</a></li>
-        <li>{{#link-to 'user'}}User{{/link-to}}</li>
-        <li><button {{action 'dropbox_login' 'loggedin'}}>Dropbox Login</button></li>
+        {{#if loggedin}}
+          <li>
+        		{{#link-to 'refs'}}References{{/link-to}}
+        	</li>
+          <li>{{#link-to 'user'}}User{{/link-to}}</li>
+          <li><a {{action 'dropbox_logout' 'loggedin'}}>Logout</a></li>
+        {{else}}
+          <li><a {{action 'dropbox_login' 'loggedin'}}>Dropbox Login</a></li>
+        {{/if}}
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
 
+<div id="content_panel">
+  {{#unless loggedin}}
+  <button id="signin-button">Dropbox Login</button>
+  {{/unless}}
 
-{{#unless loggedin}}
-<button id="signin-button">Dropbox Login</button>
-{{/unless}}
-
-{{outlet}}
+  {{outlet}}
+</div>

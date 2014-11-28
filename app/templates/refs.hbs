@@ -1,22 +1,31 @@
-<table class="table">
-	<thead>
-		<tr>
-			<th>Author(s)</th>
-			<th>Year</th>
-			<th>Title</th>
-		</tr>
-	</thead>
-	<tbody>
-	{{#each}}
-		<tr>
-			<td>{{author}}</td>
-			<td>{{year}}</td>
-			<td>{{#linkTo 'ref' this}}
-				{{title}}
-			{{/linkTo}}</td>
-		</tr>
-	{{/each}}
-	</tbody>
-</table>
+<div class="left subpanel scrollable">
+	<div class="container-fluid">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Author(s)</th>
+					<th>Year</th>
+					<th>Title</th>
+				</tr>
+			</thead>
+			<tbody>
+			{{#each}}
+				<tr>
+					<td>{{author}}</td>
+					<td>{{year}}</td>
+					<td>{{#linkTo 'ref' this}}
+						{{title}}
+					{{/linkTo}}</td>
+				</tr>
+			{{/each}}
+			</tbody>
+		</table>
+	</div>
+</div>
 
+<div class="dragger">
+</div>
+
+<div id="reference_panel" class="right subpanel">
 {{outlet}}
+</div>

@@ -9,5 +9,26 @@ html, body {
 	top: 0;
 	right: 0;
 	border: 0;
-	z-index: 100;
+	z-index: 2000;
+}
+.dragger, .subpanel, #content_panel{
+	position: absolute;
+	overflow: hidden;
+	margin: 0px;
+	padding: 0px;
+}
+.dragger{
+	width: 10px;
+	cursor: ew-resize;
+}
+.scrollable{
+	overflow-y: scroll;
+}
+#content_panel{
+	top: 51;
+	overflow: hidden;
+	width: 100%
+}
+#preview{
+	position: absolute;
 }

@@ -1,3 +1,17 @@
-{{title}}
+<div id="reference_subpanel" class="subpanel scrollable left">
+	<div class="form-group">
+	    <label for="exampleInputEmail1">Title</label>
+	    {{input type="text" class="form-control" value=title}}
+	</div>
+	<div class="form-group">
+	    <label for="exampleInputEmail1">Url</label>
+	    {{input type="text" class="form-control" value=url}}
+	</div>
+</div>
 
-<iframe id="preview" {{bind-attr src='preview'}}></iframe>
+<div class="dragger">
+</div>
+
+<div id="preview_panel" class="subpanel scrollable right">
+	<iframe id="preview" {{bind-attr src='preview'}}></iframe>
+</div>
