@@ -16,8 +16,7 @@ export default Ember.View.extend({
 		      resizable: true,
 		      title: "Preview",
 		      width: "800px",
-		      height: "500px",
-		      minHeight: "500px"
+		      height: "auto !important"
 		    });
 		});
 

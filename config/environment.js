@@ -44,7 +44,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'gh-pages') {
-    ENV.baseURL = '/fire-ref';
+    ENV.baseURL = '/fire-ref/';
     ENV.APP.dropboxRecieverUrl = "https://wrenoud.github.io/fire-ref/";
     ENV.APP.FORCE_SSL = true;
   }

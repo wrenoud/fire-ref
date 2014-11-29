@@ -90,22 +90,29 @@ export default Ember.Controller.extend(Ember.TargetActionSupport,{
                   if (error) {
                     return showError(error);  // Something went wrong.
                   }
-
                   var bibtex = bibtexParse.toJSON(data);
                   var new_item = bibtex[0].entryTags;
-                  new_item.type = bibtex[0].entryType;
                   new_item.id = bibtex[0].citationKey;
                   var item = store.createRecord('ref', new_item);
-                  item.save();
+                  store.find('entrytype', bibtex[0].entryType).then(function(entrytype){
+                    item.set('type', entrytype);
+                    item.save();
+                  });
                 });
               }else{
+
+                var entrytype = store.getById('entrytype', "article");
                 var item = store.createRecord('ref', {
                   id: id,
+                  type: entrytype,
                   title: items[id].file.name.replace(/\.[^\.]+$/ig,''),
                   path: items[id].file.path,
                   reviewed: 'false'
                 });
-                item.save();
+                store.find('entrytype', "article").then(function(entrytype){
+                  item.set('type', entrytype);
+                  item.save();
+                });
               }
             }
           });
