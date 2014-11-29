@@ -102,10 +102,18 @@ export default Ember.Controller.extend(Ember.TargetActionSupport,{
               }else{
 
                 var entrytype = store.getById('entrytype', "article");
+                var title = items[id].file.name.replace(/\.[^\.]+$/ig,'');
+                var match = /^([0-9]+).\s*/.exec(title);
+                var year = undefined;
+                if(match){
+                  year = match[1];
+                  title = title.replace(/^([0-9]+).\s*/,'');
+                }
                 var item = store.createRecord('ref', {
                   id: id,
                   type: entrytype,
-                  title: items[id].file.name.replace(/\.[^\.]+$/ig,''),
+                  title: title,
+                  year: year,
                   path: items[id].file.path,
                   reviewed: 'false'
                 });
