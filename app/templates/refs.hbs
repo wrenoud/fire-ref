@@ -1,21 +1,25 @@
 <div class="left subpanel scrollable">
 	<div class="container-fluid">
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Author(s)</th>
-					<th>Year</th>
-					<th>Title</th>
-				</tr>
-			</thead>
+		
+		<div class="btn-group btn-group-justified" role="group" aria-label="...">
+			<a class="btn btn-default" {{action "sort" "author"}}>
+				Author(s) <span {{bind-attr class=":glyphicon sortedByAuthor::hidden sortAscending:glyphicon-sort-by-alphabet:glyphicon-sort-by-alphabet-alt"}}></span>
+			</a>
+			<a class="btn btn-default" {{action "sort" "year"}}>
+				Year&nbsp;<span {{bind-attr class=":glyphicon sortedByYear::hidden sortAscending:glyphicon-sort-by-order:glyphicon-sort-by-order-alt"}}></span>
+			</a>
+			<a class="btn btn-default" {{action "sort" "title"}}>
+				Title <span {{bind-attr class=":glyphicon sortedByTitle::hidden sortAscending:glyphicon-sort-by-alphabet:glyphicon-sort-by-alphabet-alt"}}></span>
+			</a>
+		</div>
+		<table id="refs_table" class="table">
 			<tbody>
 			{{#each}}
 				<tr>
-					<td>{{author}}</td>
-					<td>{{year}}</td>
-					<td>{{#linkTo 'ref' this}}
-						{{title}}
-					{{/linkTo}}</td>
+					<td colspan="3">
+						{{#link-to 'ref' this}}{{title}}{{/link-to}}<br>
+						<span class="year">{{year}}</span> <span class="author">{{author}}</span>
+					</td>
 				</tr>
 			{{/each}}
 			</tbody>
@@ -26,6 +30,6 @@
 <div class="dragger">
 </div>
 
-<div id="reference_panel" class="right subpanel">
+<div id="reference_panel" class="right subpanel scrollable">
 {{outlet}}
 </div>

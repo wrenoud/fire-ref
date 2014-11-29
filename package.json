@@ -31,6 +31,8 @@
     "express": "^4.8.5",
     "glob": "^4.0.5",
     "ember-cli-bootstrap-sass": "~0.2.8",
-    "ember-cli-jquery-ui": "0.0.13"
+    "ember-cli-jquery-ui": "0.0.13",
+    "broccoli-closure-compiler": "~1.0.0",
+    "broccoli-merge-trees": "~0.2.1"
   }
 }

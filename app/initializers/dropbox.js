@@ -1,4 +1,5 @@
 /* global Dropbox, Ember */
+import config from '../config/environment';
 
 export default {
   name: 'dropbox',
@@ -9,7 +10,7 @@ export default {
 
     var client = Ember.Application.client = new Dropbox.Client({ key: "dfzpvdfyqakmnfi" });
     client.authDriver(new Dropbox.AuthDriver.Popup({
-      receiverUrl: "http://localhost:4200/oauth_receiver.html",
+      receiverUrl: config.APP.dropboxRecieverUrl + "oauth_receiver.html",
       rememberUser: true
     }));
 

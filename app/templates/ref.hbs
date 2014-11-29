@@ -1,36 +1,45 @@
-<div id="reference_subpanel" class="subpanel scrollable left">
-	{{#if isDirty}}
-	<a {{action 'save'}}>Dropbox Login</a></li>
-	{{/if}}
-	<div class="container-fluid">
-		<div class="row">
+<div class="container-fluid" {{bind-attr class="isDirty"}}>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="row">
+				<div class="col-md-4">
+					<button {{action 'preview'}}>Preview</button>
+				</div>
+				<div class="col-md-8 text-right">
+					{{#if isDirty}}
+						<button {{action 'cancel'}}>Undo</button>
+						<button {{action 'save'}}>Save</button>
+					{{/if}}
+				</div>
+			</div>
 			<div class="form-group">
-			    <label for="exampleInputEmail1">Title</label>
+			    <label>Title</label>
 			    {{input type="text" class="form-control" value=title}}
 			</div>
 			<div class="form-group">
-			    <label for="exampleInputEmail1">Authors</label>
+			    <label>Authors</label>
 			    {{input type="text" class="form-control" value=author}}
 			</div>
 			<div class="form-group">
-			    <label for="exampleInputEmail1">Year</label>
+			    <label>Year</label>
 			    {{input type="text" class="form-control" value=year}}
 			</div>
 			<div class="form-group">
-			    <label for="exampleInputEmail1">Publisher</label>
+			    <label>Publisher</label>
 			    {{input type="text" class="form-control" value=publisher}}
 			</div>
 			<div class="form-group">
-			    <label for="exampleInputEmail1">Url</label>
+			    <label>Url</label>
 			    {{input type="text" class="form-control" value=url}}
+			</div>
+			<div class="form-group">
+			    <label>BibTex Tag</label>
+			    {{input type="text" class="form-control" value=id}}
+			</div>
+			<div class="form-group">
+			    <label>BibTeX</label>
+			    {{textarea class="form-control" rows="6" value=pretty_bibtex}}
 			</div>
 		</div>
 	</div>
-</div>
-
-<div class="dragger">
-</div>
-
-<div id="preview_panel" class="subpanel scrollable right">
-	{{!--<iframe id="preview" {{bind-attr src='preview'}}></iframe>--}}
 </div>

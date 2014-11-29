@@ -1,8 +1,16 @@
+/* global bibtexParse */
 import Ember from 'ember';
 
 export default Ember.Controller.extend(Ember.TargetActionSupport,{
   currentUser: null,
   loggedin: false,
+  userName: function(){
+    var id = this.get('currentUser');
+    var user = this.get('store').getById('user', id);
+    if(user){
+      return user.get('name');
+    }
+  }.property('currentUser'),
 
   actions: {
     dropbox_login: function(){
@@ -25,12 +33,13 @@ export default Ember.Controller.extend(Ember.TargetActionSupport,{
           if(!err)
           {
             account.id = account.uid;
+            controller.get('store').createRecord('user', account);
             controller.set('currentUser', account.id);
-          controller.get('store').createRecord('user', account);
-          controller.triggerAction({
-            action:'scan_files',
-            target: controller
-          });
+            controller.triggerAction({
+              action:'scan_files',
+              target: controller
+            });
+            controller.transitionTo('refs');
           }
         });
       });
@@ -46,8 +55,7 @@ export default Ember.Controller.extend(Ember.TargetActionSupport,{
             return showError(error);  // Something went wrong.
           }
           console.log(folderStat);
-          console.log(fileStats);
-          console.log("Your Dropbox contains " + entries.join(", "));
+          console.log(fileStats[0]);
           
           var items = {};
           // group bibtex with files
@@ -85,15 +93,15 @@ export default Ember.Controller.extend(Ember.TargetActionSupport,{
 
                   var bibtex = bibtexParse.toJSON(data);
                   var new_item = bibtex[0].entryTags;
-                  new_item.type = bibtex.entryType;
-                  new_item.id = bibtex.citationKey;
+                  new_item.type = bibtex[0].entryType;
+                  new_item.id = bibtex[0].citationKey;
                   var item = store.createRecord('ref', new_item);
                   item.save();
                 });
               }else{
                 var item = store.createRecord('ref', {
                   id: id,
-                  title: items[id].file.name,
+                  title: items[id].file.name.replace(/\.[^\.]+$/ig,''),
                   path: items[id].file.path,
                   reviewed: 'false'
                 });

@@ -18,9 +18,27 @@ var app = new EmberApp();
 // along with the exports of each module as its value.
 
 app.import('bower_components/dropbox-build/dropbox.js');
+
 app.import('bower_components/zotero-bibtex-parse/zotero-bibtex-parse.js');
 app.import('bower_components/ember-localstorage-adapter/localstorage_adapter.js');
-app.import('bower_components/jquery-ui/jquery-ui.js');
 
-// Merge the bootstrapFonts with the ember app tree
-module.exports = app.toTree()
+app.import('bower_components/jquery-ui/jquery-ui.js');
+//app.import('bower_components/jquery-ui/themes/smoothness/jquery-ui.css');
+app.import('bower_components/jquery-ui/themes/smoothness/jquery-ui.min.css');
+app.import('bower_components/jquery-ui/themes/smoothness/theme.css');
+
+var pickFiles = require('broccoli-static-compiler');
+jqueryUiImgs = pickFiles('bower_components/jquery-ui/themes/smoothness/images', {
+	srcDir: '/',
+	destDir: '/assets/images'
+})
+
+var mergerTrees = require('broccoli-merge-trees');
+merged = mergerTrees([app.toTree(), jqueryUiImgs]);
+
+if (app.env === 'development') {
+  module.exports = merged
+}else{
+  var closure_compiler = require('broccoli-closure-compiler');
+  module.exports = closure_compiler(merged, {language_in: 'ECMASCRIPT5'});
+}

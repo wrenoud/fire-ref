@@ -27,6 +27,8 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = true;
 
     ENV.APP.DROPBOX_FOLDER = "/Apps/FireRef";
+    ENV.APP.dropboxRecieverUrl = "http://localhost:4200/";
+    ENV.APP.FORCE_SSL = false;
   }
 
   if (environment === 'test') {
@@ -43,6 +45,8 @@ module.exports = function(environment) {
 
   if (environment === 'gh-pages') {
     ENV.baseURL = '/fire-ref';
+    ENV.APP.dropboxRecieverUrl = "https://wrenoud.github.io/fire-ref/";
+    ENV.APP.FORCE_SSL = true;
   }
 
   return ENV;

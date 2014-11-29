@@ -13,6 +13,10 @@ var App = Ember.Application.extend({
 
 loadInitializers(App, config.modulePrefix);
 
+if (config.APP.FORCE_SSL && window.location.protocol !== "https:"){
+    window.location.href = "https:" + window.location.href.substring(window.location.protocol.length);
+}
+
 Ember.Application.make_resizable = function(parent_id, min_width){
 	/**
 	// in the template

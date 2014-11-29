@@ -1,11 +1,22 @@
-{{model}}
-<li>uid: {{uid}}</li>
-<li>countryCode: {{countryCode}}</li>
-<li>email: {{email}}</li>
-<li>name: {{name}}</li>
-<li>privateBytes: {{privateBytes}}</li>
-<li>publicAppUrl: {{publicAppUrl}}</li>
-<li>quota: {{quota}}</li>
-<li>referralUrl: {{referralUrl}}</li>
-<li>sharedBytes: {{sharedBytes}}</li>
-<li>usedQuota: {{usedQuota}}</li>
+<div class="container">
+	<div class="row">
+
+		<ul class="list-group">
+		  <li class="list-group-item">Current User: <b>{{name}} ({{email}})</b></li>
+		  <li class="list-group-item">
+		  	Data Usage: <b>{{used_pretty}}</b> of <b>{{quota_pretty}}</b>
+		  	({{shared_pretty}} shared and {{private_pretty}} private)</li>
+		  <li class="list-group-item">
+			<div class="progress">
+			  <div class="shared progress-bar progress-bar-warning" role="progressbar" {{bind-attr aria-valuenow=usedQuota}} aria-valuemin="0" {{bind-attr aria-valuemax=quota}}>
+			    {{shared_pretty}}
+			  </div>
+			  <div class="private progress-bar progress-bar-success" role="progressbar" {{bind-attr aria-valuenow=usedQuota}} aria-valuemin="0" {{bind-attr aria-valuemax=quota}}>
+			    {{private_pretty}}
+			  </div>
+			</div>
+		  </li>
+		</ul>
+
+	</div>
+</div>

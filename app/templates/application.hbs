@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -18,20 +18,27 @@
           <li>
         		{{#link-to 'refs'}}References{{/link-to}}
         	</li>
-          <li>{{#link-to 'user'}}User{{/link-to}}</li>
+          <li>{{#link-to 'user'}}<span class="glyphicon glyphicon-user"></span> {{userName}}{{/link-to}}</li>
           <li><a {{action 'dropbox_logout' 'loggedin'}}>Logout</a></li>
         {{else}}
-          <li><a {{action 'dropbox_login' 'loggedin'}}>Dropbox Login</a></li>
+          <li><a class="btn btn-block" {{action 'dropbox_login'}}>Sign in with Dropbox</a>
+        </li>
         {{/if}}
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://github.com/wrenoud/fire-ref/issues"><span class="glyphicon glyphicon-question-sign"></span> Support</a></li>
+        <li><iframe src="http://ghbtns.com/github-btn.html?user=wrenoud&repo=fire-ref&type=fork" allowtransparency="true" frameborder="0" scrolling="0" width="62" height="20"></iframe></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
 
 <div id="content_panel">
-  {{#unless loggedin}}
-  <button id="signin-button">Dropbox Login</button>
-  {{/unless}}
-
   {{outlet}}
+</div>
+
+<div id="preview_dialog" title="Basic dialog">
+  <div id="preview_container">
+    <iframe src="#"></iframe>
+  </div>
 </div>
