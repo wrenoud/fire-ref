@@ -48,10 +48,10 @@ Ember.Application.make_resizable = function(parent_id, min_width){
 	var left = function(){return Ember.$(selector(parent_id, ".left"));};
 	var dragger = function(){return Ember.$(selector(parent_id, ".dragger"));};
 	var right = function(){return Ember.$(selector(parent_id, ".right"));};
-
+	var labels = function(){return Ember.$("#labels");};
 	function update_right_panel(){
 		right().css("left", dragger().position().left + dragger().width());
-		right().width(parent().width() - left().width() - dragger().width());
+		right().width(parent().width() - left().width() - dragger().width() - labels().width());
 	}
 
 	function update_height(){
@@ -64,12 +64,12 @@ Ember.Application.make_resizable = function(parent_id, min_width){
 	
 	function update_on_drag() {
 		// update the width of the left panel, and resize and move the right
-        left().width(dragger().position().left);
+        left().width(dragger().position().left - labels().width());
         update_right_panel();
     }
 
 	update_height();
-	left().position({my: "left top", at:"left top", of: parent()});
+	left().position({my: "left top", at:"right top", of: labels()});
 	left().width(parent().width()*0.5);
 	dragger().position({my: "left top", at:"right top", of: left()});
 	update_right_panel();

@@ -2,10 +2,12 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="row">
-				<div class="col-md-4">
+				<div class="col-md-6">
+				
 					<a class="btn btn-default" target="_blank" {{bind-attr href=preview}}>Open in Tab</a>
+					<a class="btn btn-default" target="_blank" {{bind-attr href=googleScholar}}>Search</a>
 				</div>
-				<div class="col-md-8 text-right">
+				<div class="col-md-6 text-right">
 					{{#if isDirty}}
 						<button class="btn btn-default" {{action 'cancel'}}>Undo</button>
 						<button class="btn btn-default" {{action 'save'}}>Save</button>
@@ -23,9 +25,19 @@
 				  class="form-control"
 				}}
 			</div>
-			<div class="form-group">
-			    <label>Title</label>
-			    {{input type="text" class="form-control" value=title}}
+			<div class="row">
+				<div class="col-md-4">
+					<div class="form-group">
+					    <label>Label</label>
+					    {{input type="text" class="form-control" value=label}}
+					</div>
+				</div>
+				<div class="col-md-8">
+					<div class="form-group">
+					    <label>Title</label>
+					    {{input type="text" class="form-control" value=title}}
+					</div>
+				</div>
 			</div>
 			<div class="form-group">
 			    <label>Authors</label>

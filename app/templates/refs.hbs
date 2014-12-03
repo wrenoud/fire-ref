@@ -1,3 +1,15 @@
+<div id="labels" class="subpanel scrollable">
+	<div class="container-fluid">
+		<div class="list-group">
+			<a {{action 'filter' '*'}} class="btn btn-default list-group-item">All</a>
+			<a {{action 'filter' undefined}} class="btn btn-default list-group-item">Unsorted</a>
+		{{#each labels}}
+			<a {{action 'filter' this}} class="btn btn-default list-group-item">{{this}}</a>
+		{{/each}}
+		</div>
+	</div>
+</div>
+
 <div class="left subpanel scrollable">
 	<div class="container-fluid">
 		
@@ -14,11 +26,11 @@
 		</div>
 		<table id="refs_table" class="table">
 			<tbody>
-			{{#each}}
+			{{#each filteredContent}}
 				<tr>
 					<td colspan="3">
 						{{#link-to 'ref' this}}{{title}}{{/link-to}}<br>
-						<span class="year">{{year}}</span> <span class="author">{{author}}</span>
+						{{#if year}}<span class="year">{{year}}</span>.{{/if}} <span class="author">{{abbreviated_authors}}</span>
 					</td>
 				</tr>
 			{{/each}}

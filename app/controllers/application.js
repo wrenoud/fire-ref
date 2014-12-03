@@ -91,13 +91,11 @@ export default Ember.Controller.extend(Ember.TargetActionSupport,{
                     return showError(error);  // Something went wrong.
                   }
                   var bibtex = bibtexParse.toJSON(data);
-                  var new_item = bibtex[0].entryTags;
-                  new_item.id = bibtex[0].citationKey;
-                  var item = store.createRecord('ref', new_item);
-                  store.find('entrytype', bibtex[0].entryType).then(function(entrytype){
-                    item.set('type', entrytype);
-                    item.save();
-                  });
+                  
+                  var item = store.createRecord('ref', {id: bibtex[0].citationKey});
+
+                  item.set('bibtex', data);
+                  item.save();
                 });
               }else{
 
