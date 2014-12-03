@@ -61,8 +61,11 @@ var ref = DS.Model.extend({
       var names = name.split(/\s*,\s+/g);
       if(names.length === 1){
         names = name.split(/\s+/g);
+        return names[names.length-1];
+      }else{
+        return names[0];
       }
-      return names[names.length-1];
+      
     }
 
     if(author){
@@ -72,7 +75,7 @@ var ref = DS.Model.extend({
       }else{
         authors.forEach(function(name){
           filename += last_name(name) + ', ';
-        })
+        });
       }
     }
     filename = filename.replace(/, $/g,'. ');
