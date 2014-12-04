@@ -6,8 +6,14 @@ html, body {
   overflow: hidden;
 }
 
+// reference highlighting when modified
 .is-dirty{
 	background-color: #FFEBCD;
+}
+
+// ref list active
+a.active{
+	font-weight: bold;
 }
 
 // fork me button

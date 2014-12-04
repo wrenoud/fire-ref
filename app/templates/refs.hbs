@@ -30,10 +30,13 @@
 			<tbody>
 			{{#each filteredContent}}
 				<tr>
-					<td colspan="3">
+					{{#link-to "ref" this tagName="td" href=false colspan="3"}}
 						{{#link-to 'ref' this}}{{title}}{{/link-to}}<br>
-						{{#if year}}<span class="year">{{year}}</span>.{{/if}} <span class="author">{{abbreviated_authors}}</span> {{#if journal}}<span class="journal">{{journal}}</span>.{{/if}} {{#if publisher}}<span class="publisher">{{publisher}}</span>.{{/if}}
-					</td>
+						{{#if year}}<span class="year">{{year}}</span>.{{/if}}
+						<span class="author">{{abbreviated_authors}}</span>
+						{{#if journal}}<span class="journal">{{journal}}</span>.{{/if}}
+						{{#if publisher}}<span class="publisher">{{publisher}}</span>.{{/if}}
+					{{/link-to}}
 				</tr>
 			{{/each}}
 			</tbody>
