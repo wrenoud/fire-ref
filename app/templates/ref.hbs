@@ -15,74 +15,75 @@
 				</div>
 			</div>
 
-			<div class="form-group">
-			    <label>Type</label>
-				{{view Ember.Select
-				  contentBinding="entrytypes"
-				  optionLabelPath="content.id"
-				  optionValuePath="content.id"
-				  selectionBinding="type"
-				  class="form-control"
-				}}
+			<div class="form-horizontal">
+				<div class="form-group">
+				    <label class="col-sm-3 control-label">Type</label>
+					<div class="col-sm-9">
+					{{view Ember.Select
+					  contentBinding="entrytypes"
+					  optionLabelPath="content.id"
+					  optionValuePath="content.id"
+					  selectionBinding="type"
+					  class="form-control"
+					}}</div>
+				</div>
+				<div class="form-group">
+				    <label class="col-sm-3 control-label">Label</label>
+				    <div class="col-sm-9">{{input type="text" class="form-control" value=label}}</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Title</label>
+				    <div class="col-sm-9">{{input type="text" class="form-control" value=title}}</div>
+				</div>
+				<div class="form-group">
+				    <label class="col-sm-3 control-label">Authors</label>
+				    <div class="col-sm-9">{{input type="text" class="form-control" value=author}}</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Journal</label>
+				    <div class="col-sm-9">{{input type="text" class="form-control" value=journal}}</div>
+				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-4">
+				<div class="col-md-3"></div>
+				<div class="col-md-3">
 					<div class="form-group">
-					    <label>Label</label>
-					    {{input type="text" class="form-control" value=label}}
+					    {{input type="text" class="form-control" value=year placeholder="Year"}}
 					</div>
 				</div>
-				<div class="col-md-8">
+				<div class="col-md-3">
 					<div class="form-group">
-					    <label>Title</label>
-					    {{input type="text" class="form-control" value=title}}
+					    {{input type="text" class="form-control" value=volume placeholder="Volume"}}
 					</div>
 				</div>
-			</div>
-			<div class="form-group">
-			    <label>Authors</label>
-			    {{input type="text" class="form-control" value=author}}
-			</div>
-			<div class="row">
-				<div class="col-md-4">
+				<div class="col-md-3">
 					<div class="form-group">
-					    <label>Year</label>
-					    {{input type="text" class="form-control" value=year}}
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="form-group">
-					    <label>Volume</label>
-					    {{input type="text" class="form-control" value=volume}}
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="form-group">
-					    <label>Number</label>
-					    {{input type="text" class="form-control" value=number}}
+					    {{input type="text" class="form-control" value=number placeholder="Number"}}
 					</div>
 				</div>
 			</div>
-			<div class="form-group">
-			    <label>Journal</label>
-			    {{input type="text" class="form-control" value=journal}}
+			<div class="form-horizontal">
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Publisher</label>
+				    <div class="col-sm-9">{{input type="text" class="form-control" value=publisher}}</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">URL</label>
+				    <div class="col-sm-9">{{input type="text" class="form-control" value=url}}</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">DOI</label>
+				    <div class="col-sm-9">{{input type="text" class="form-control" value=doi}}</div>
+				</div>
 			</div>
-			<div class="form-group">
-			    <label>Publisher</label>
-			    {{input type="text" class="form-control" value=publisher}}
-			</div>
-			<div class="form-group">
-			    <label>Url</label>
-			    {{input type="text" class="form-control" value=url}}
-			</div>
-			<div class="form-group">
-			    <label>Suggested Filename</label>
-			    {{input type="text" class="form-control" value=pretty_filename}}
-			</div>
-			<div class="form-group">
-			    <label>BibTeX</label>
-			    {{textarea class="form-control" rows="6" value=pretty_bibtex}}
-			</div>
+		</div>
+		<div class="form-group">
+		    <label>Suggested Filename</label>
+		    {{input type="text" class="form-control" value=pretty_filename}}
+		</div>
+		<div class="form-group">
+		    <label>BibTeX</label>
+		    {{textarea class="form-control" rows="6" value=pretty_bibtex}}
 		</div>
 	</div>
 </div>

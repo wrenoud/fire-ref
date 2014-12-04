@@ -32,7 +32,7 @@ export default Ember.ArrayController.extend({
 			return glom;
 		}).filter(function(label, index, arr){
 	    return arr.indexOf(label) === index && label !== undefined && label !== ''; // throw away any instances which are not first
-	  });
+	  }).sort();
 	}.property('@each.label'),
 
 	filteredContent: function(){
