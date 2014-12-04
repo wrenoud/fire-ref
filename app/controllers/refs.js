@@ -33,7 +33,7 @@ export default Ember.ArrayController.extend({
 		}).filter(function(label, index, arr){
 	    return arr.indexOf(label) === index && label !== undefined && label !== ''; // throw away any instances which are not first
 	  }).sort();
-	}.property('@each.label'),
+	}.property('@each.isDirty'),
 
 	filteredContent: function(){
 	    var filter = this.get('filter');
