@@ -19,10 +19,14 @@ html, body {
 #refs_table td{
 	white-space: nowrap;
 }
-td .year, td .author{
+td .year, td .author, td .journal, td .publisher{
 	padding: 0 0 0 1em;
 }
+td .journal {
+	font-style: italic;
+}
 
+// label panel
 #labels{
 	width: 200px;
 	height: 100%;
