@@ -1,24 +1,18 @@
 import Ember from 'ember';
 
 export default Ember.View.extend({
-	didInsertElement: function(){
-		Ember.$('#content_panel').position({my: "left top", at:"left bottom", of: Ember.$(".navbar")});
-		Ember.$('#content_panel').height(window.innerHeight - Ember.$(".navbar").height());
-		Ember.$(window).resize(function(){
-			Ember.$('#content_panel').height(window.innerHeight - Ember.$(".navbar").height());
-		});
+  didInsertElement: function(){
+    var controller = this.get('controller');
+    controller.triggerAction({
+      action:'trySilentDropboxLogin',
+      target: controller
+    });
 
-		Ember.$(function() {
-		    Ember.$( "#preview_dialog" ).dialog({
-		      autoOpen: false,
-		      closeOnEscape: true,
-		      draggable: true,
-		      resizable: true,
-		      title: "Preview",
-		      width: "800px",
-		      height: "auto !important"
-		    });
-		});
-
-	}
+    // trigger layout
+    Ember.$('#content_panel').position({my: "left top", at:"left bottom", of: Ember.$(".navbar")});
+    Ember.$('#content_panel').height(window.innerHeight - Ember.$(".navbar").height());
+    Ember.$(window).resize(function(){
+      Ember.$('#content_panel').height(window.innerHeight - Ember.$(".navbar").height());
+    });
+  }
 });

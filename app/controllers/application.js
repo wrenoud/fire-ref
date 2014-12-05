@@ -1,5 +1,6 @@
 /* global bibtexParse */
 import Ember from 'ember';
+import config from '../config/environment';
 
 export default Ember.Controller.extend(Ember.TargetActionSupport,{
   currentUser: null,
@@ -13,7 +14,28 @@ export default Ember.Controller.extend(Ember.TargetActionSupport,{
   }.property('currentUser'),
 
   actions: {
-    dropbox_login: function(){
+    clearLocalStorage: function(){
+      localStorage.removeItem(config.APP.LOCALSTORAGE_NS);
+      window.location.reload();
+    },
+    trySilentDropboxLogin: function(){
+      var controller = this;
+      Ember.Application.client.authenticate({interactive: false}, function(error, client) {
+        if (error) {
+          return console.log(error);
+        }
+        if (client.isAuthenticated()) {
+          // Cached credentials are available, make Dropbox API calls.
+          controller.triggerAction({
+            action:'onAfterAuthenticate',
+            target: controller
+          });
+        } else {
+          // not preauthed, do nothing
+        }
+      });
+    },
+    doDropboxLogin: function(){
       var controller = this;
       Ember.Application.client.authenticate(function(error, client) {
         if (error) {
@@ -28,8 +50,16 @@ export default Ember.Controller.extend(Ember.TargetActionSupport,{
         //
         // The user authorized your app, and everything went well.
         // client is a Dropbox.Client instance that you can use to make API calls.
-        controller.set('loggedin', true);
-        client.getAccountInfo({},function(err, account){
+        controller.triggerAction({
+          action:'onAfterAuthenticate',
+          target: controller
+        });
+      });
+    },
+    onAfterAuthenticate: function(){
+      var controller = this;
+      controller.set('loggedin', true);
+      Ember.Application.client.getAccountInfo({},function(err, account){
           if(!err)
           {
             account.id = account.uid;
@@ -42,7 +72,6 @@ export default Ember.Controller.extend(Ember.TargetActionSupport,{
             controller.transitionTo('refs');
           }
         });
-      });
     },
     scan_files: function(){
       var controller = this;
@@ -102,7 +131,7 @@ export default Ember.Controller.extend(Ember.TargetActionSupport,{
                 var entrytype = store.getById('entrytype', "article");
                 var title = items[id].file.name.replace(/\.[^\.]+$/ig,'');
                 var match = /^([0-9]+).\s*/.exec(title);
-                var year = undefined;
+                var year;
                 if(match){
                   year = match[1];
                   title = title.replace(/^([0-9]+).\s*/,'');

@@ -36,6 +36,7 @@ module.exports = function(environment) {
 
     ENV.APP.DROPBOX_FOLDER = "/Apps/FireRef";
     ENV.APP.dropboxRecieverUrl = "http://localhost:4200/";
+    ENV.APP.LOCALSTORAGE_NS = 'wrenoud/fire-ref';
     ENV.APP.FORCE_SSL = false;
   }
 

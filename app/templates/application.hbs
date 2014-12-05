@@ -19,9 +19,9 @@
         		{{#link-to 'refs'}}References{{/link-to}}
         	</li>
           <li>{{#link-to 'user'}}<span class="glyphicon glyphicon-user"></span> {{userName}}{{/link-to}}</li>
-          <li><a {{action 'dropbox_logout' 'loggedin'}}>Logout</a></li>
+          <li><a {{action 'clearLocalStorage'}}>Clear Cache</a></li>
         {{else}}
-          <li><a class="btn btn-block" {{action 'dropbox_login'}}>Sign in with Dropbox</a>
+          <li><a class="btn btn-block" {{action 'doDropboxLogin'}}>Sign in with Dropbox</a>
         </li>
         {{/if}}
       </ul>
@@ -35,10 +35,4 @@
 
 <div id="content_panel">
   {{outlet}}
-</div>
-
-<div id="preview_dialog" title="Basic dialog">
-  <div id="preview_container">
-    <iframe src=""></iframe>
-  </div>
 </div>

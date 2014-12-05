@@ -1,10 +1,11 @@
 import DS from 'ember-data';
+import config from '../config/environment';
 
 //export default DS.RESTAdapter.extend({
 //});
 
 export default DS.LSAdapter.extend({
-    namespace: 'wrenoud/fire-ref'
+    namespace: config.APP.LOCALSTORAGE_NS
 });
 
 // export default DS.Adapter.extend({
