@@ -116,7 +116,10 @@ var ref = DS.Model.extend({
 
 
   preview: function(){
-    return config.baseURL + "preview.html?path=" + this.get('path') + "&access_token=" + Ember.Application.client._oauth._token;
+    return config.baseURL + "preview.html?" +
+      "path=" + this.get('path') +
+      "&access_token=" + Ember.Application.client._oauth._token + 
+      "&title=" + encodeURIComponent(this.get('title'));
   }.property('path'),
 
 });

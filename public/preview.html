@@ -1,11 +1,18 @@
 <html>
 	<head>
+		<title>FireRef Document Preview</title>
 		<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 		<script>
 		$(function(){
-			matches = /path=(.*?)&access_token=(.*)/ig.exec(window.location.href);
+			matches = /path=(.*?)&access_token=(.*)&title=(.*)/ig.exec(window.location.href);
+			var dropbox_path = "https://api-content.dropbox.com/1/previews/auto" + matches[1] + "?access_token=" + matches[2];
+			var title = decodeURIComponent(matches[3])
+
+			document.title = title;
+
 			var preview = $('#preview').clone();
-			preview.attr('src', "https://api-content.dropbox.com/1/previews/auto" + matches[1] + "?access_token=" + matches[2]);
+			preview.attr('src', dropbox_path);
+			preview.children().attr('src', dropbox_path);
 			$('#preview').replaceWith(preview);
 		});
 		</script>
@@ -22,8 +29,8 @@
 		</style>
 	</head>
 	<body>
-		<embed id="preview" name="plugin" src="#" type="application/pdf">
-		<script>
-		</script>
+		<object id="preview" type="application/pdf">
+		    <embed type="application/pdf" />
+		</object>
 	</body>
 </html>
