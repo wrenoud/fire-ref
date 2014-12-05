@@ -1,4 +1,5 @@
 /* jshint node: true */
+var pjson = require('../package.json');
 
 module.exports = function(environment) {
   var ENV = {
@@ -16,6 +17,9 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+      DROPBOX_FOLDER: "/Apps/FireRef",
+      LOCALSTORAGE_NS: 'wrenoud/fire-ref',
+      VERSION: pjson.version
     }
   };
 
@@ -34,9 +38,7 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     ENV.APP.LOG_VIEW_LOOKUPS = true;
 
-    ENV.APP.DROPBOX_FOLDER = "/Apps/FireRef";
     ENV.APP.dropboxRecieverUrl = "http://localhost:4200/";
-    ENV.APP.LOCALSTORAGE_NS = 'wrenoud/fire-ref';
     ENV.APP.FORCE_SSL = false;
   }
 

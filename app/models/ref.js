@@ -20,7 +20,7 @@ var ref = DS.Model.extend({
 
 
 
-  bibtex: function(key, value, previousValue){
+  bibtex: function(key, value/*, previousValue */){
     var model = this;
 
     if(arguments.length > 1){
@@ -47,9 +47,9 @@ var ref = DS.Model.extend({
   reviewed: DS.attr(), // True/False
   updated: DS.attr(),
 
-  pretty_bibtex: function(key, value, previousValue){
+  pretty_bibtex: function(key, value /*, previousValue */){
     if(arguments.length > 1){
-      var bibtex = this.set('bibtex', value);
+      this.set('bibtex', value);
     }
     return this.get('bibtex').replace(/\}, /ig,'},\n\t');
   }.property('bibtex'),

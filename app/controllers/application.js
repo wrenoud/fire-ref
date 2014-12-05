@@ -3,8 +3,10 @@ import Ember from 'ember';
 import config from '../config/environment';
 
 export default Ember.Controller.extend(Ember.TargetActionSupport,{
+  version: config.APP.VERSION,
   currentUser: null,
   loggedin: false,
+
   userName: function(){
     var id = this.get('currentUser');
     var user = this.get('store').getById('user', id);
