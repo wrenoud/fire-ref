@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.ArrayController.extend({
-  filter: null,
+  filter: '*', // set default to all
   sortProperties: ['year'],
     sortAscending: true,
   //allLabels: Ember.computed.mapBy('refs', 'label'),
