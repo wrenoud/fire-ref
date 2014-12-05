@@ -39,7 +39,7 @@ export default Ember.Controller.extend(Ember.TargetActionSupport,{
     },
     doDropboxLogin: function(){
       var controller = this;
-      Ember.Application.client.authenticate(function(error, client) {
+      Ember.Application.client.authenticate(function(error/*, client*/) {
         if (error) {
           // Replace with a call to your own error-handling code.
           //
