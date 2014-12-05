@@ -4923,6 +4923,10 @@ td .journal {
   padding: 0px;
   box-sizing: border-box; }
 
+.subpanel > div {
+  padding-top: 20px;
+  padding-bottom: 20px; }
+
 .dragger {
   width: 8px;
   cursor: col-resize;
