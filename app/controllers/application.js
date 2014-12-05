@@ -18,7 +18,7 @@ export default Ember.Controller.extend(Ember.TargetActionSupport,{
   actions: {
     clearLocalStorage: function(){
       localStorage.removeItem(config.APP.LOCALSTORAGE_NS);
-      window.location.reload();
+      window.location.href = config.baseURL;
     },
     trySilentDropboxLogin: function(){
       var controller = this;
@@ -57,6 +57,13 @@ export default Ember.Controller.extend(Ember.TargetActionSupport,{
           target: controller
         });
       });
+    },
+    doDropboxLogout: function(){
+      var controller = this;
+      Ember.Application.client.signOut();
+      controller.set('loggedin', false);
+      localStorage.removeItem(config.APP.LOCALSTORAGE_NS);
+      controller.transitionTo('index');
     },
     onAfterAuthenticate: function(){
       var controller = this;

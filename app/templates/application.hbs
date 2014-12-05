@@ -19,15 +19,16 @@
         		{{#link-to 'refs'}}References{{/link-to}}
         	</li>
           <li>{{#link-to 'user'}}<span class="glyphicon glyphicon-user"></span> {{userName}}{{/link-to}}</li>
-          <li><a {{action 'clearLocalStorage'}}>Clear Cache</a></li>
+          <li><a class="btn" {{action 'clearLocalStorage'}}>Clear Cache</a></li>
+          <li><a class="btn" {{action 'doDropboxLogout'}}>Sign out</a></li>
         {{else}}
-          <li><a class="btn btn-block" {{action 'doDropboxLogin'}}>Sign in with Dropbox</a>
+          <li><a class="btn" {{action 'doDropboxLogin'}}>Sign in with Dropbox</a>
         </li>
         {{/if}}
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="httpss://github.com/wrenoud/fire-ref/issues"><span class="glyphicon glyphicon-question-sign"></span> Support</a></li>
-        <li><iframe src="https://ghbtns.com/github-btn.html?user=wrenoud&repo=fire-ref&type=fork" allowtransparency="true" frameborder="0" scrolling="0" width="62" height="20"></iframe></li>
+        <li><a href="https://github.com/wrenoud/fire-ref/issues"><span class="glyphicon glyphicon-question-sign"></span> Support</a></li>
+        {{!--<li><iframe src="https://ghbtns.com/github-btn.html?user=wrenoud&repo=fire-ref&type=fork" allowtransparency="true" frameborder="0" scrolling="0" width="62" height="20"></iframe></li>--}}
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
