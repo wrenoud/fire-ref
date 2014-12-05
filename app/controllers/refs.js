@@ -24,7 +24,7 @@ export default Ember.ArrayController.extend({
           var prev_label = prev.get('label');
           if(typeof prev_label === 'string' && prev_label !== '')
           {
-            glom = prev_label.split(/,\s*/g);
+            glom = prev_label.trim().split(/\s*,\s*/g);
           }else{
             glom = [];
           }
@@ -32,7 +32,7 @@ export default Ember.ArrayController.extend({
       }
       var next_label = next.get('label');
       if(typeof next_label === 'string' && next_label !== ''){
-        glom = glom.concat(next_label.split(/\s*,\s*/g));
+        glom = glom.concat(next_label.trim().split(/\s*,\s*/g));
       }
       return glom;
     }).filter(function(label, index, arr){
@@ -53,13 +53,13 @@ export default Ember.ArrayController.extend({
         });
       }else{
         // sorted
-        var rx = new RegExp(filter, 'gi');
+        var rx = new RegExp("^"+filter+"$", 'gi'); // should not be partial, case-insensitive
         return refs.filter(function(ref) {
           var hasMatch = false;
           var labels = ref.get('label');
           if(labels !== undefined && labels !== ''){
             labels.split(/\s*,\s*/).forEach(function(label){
-              if(label.match(rx)){
+              if(label.trim().match(rx)){
                 hasMatch = true;
               }
             });
