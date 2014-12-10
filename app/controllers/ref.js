@@ -48,6 +48,27 @@ export default Ember.ObjectController.extend({
     preview: function(){
       Ember.$( "#preview_dialog iframe" ).attr("src", this.get('model').get("preview"));
       Ember.$( "#preview_dialog" ).dialog("open");
+    },
+    rename: function(){
+      var controller = this;
+      var docSrc = this.get('path');
+      var ext = docSrc.match(/\.[^\.]+$/)[0];
+      var bibSrc = docSrc.replace(/\.[^\.]+$/ig,'.bib');
+      var destFilename = this.get('pretty_filename');
+      var docDest = '/'+destFilename + ext;
+      var bibDest = '/'+destFilename + '.bib';
+      Ember.Application.client.move(docSrc,docDest,function(err, file){
+        if(!err){
+          console.log(file);
+          Ember.Application.client.move(bibSrc,bibDest,function(err, file){
+            if(!err){
+              console.log(file);
+              controller.set('path', docDest);
+              controller.save();
+            }
+          });
+        }
+      });
     }
   }
 });
