@@ -13,6 +13,7 @@ var ref = DS.Model.extend({
   institution: DS.attr(),
   volume: DS.attr(),
   number: DS.attr(),
+  url: DS.attr(),
   doi: DS.attr(), // http://dx.doi.org/
   issn: DS.attr(),
   pages: DS.attr(),
@@ -41,7 +42,7 @@ var ref = DS.Model.extend({
       entryType: model.get('type').id,
       entryTags: data
     }]);
-  }.property('type','title','year','author','journal','publisher','path','reviewed','updated','volume','number','label'),
+  }.property('type','title','year','author','journal','publisher','path','reviewed','updated','volume','number','label', 'url'),
   
   path: DS.attr(),
   reviewed: DS.attr(), // True/False
